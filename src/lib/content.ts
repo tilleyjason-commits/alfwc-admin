@@ -1,7 +1,7 @@
 import { supabase } from './supabase';
 import type { ContentItem, ContentRevision, AuditEvent, ContentSection, ContentStatus, Json } from './types';
 
-const client = supabase as any;
+const client = supabase;
 
 export type ContentDraft = {
   section: ContentSection;
@@ -54,7 +54,7 @@ export async function saveContent(payload: ContentDraft, note?: string) {
 
   const result = await client
     .from('app_content')
-    .upsert(row, { onConflict: ['section', 'slug'] })
+    .upsert(row, { onConflict: 'section,slug' })
     .select()
     .single();
 

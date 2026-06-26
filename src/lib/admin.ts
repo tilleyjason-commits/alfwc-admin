@@ -1,7 +1,7 @@
 import { supabase } from './supabase';
 import type { AdminProfile } from './types';
 
-const client = supabase as any;
+const client = supabase;
 
 export async function getAdminProfile() {
   return client.from('admin_profiles').select('*').single();

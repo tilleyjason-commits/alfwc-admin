@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ShieldCheck } from 'lucide-react';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../auth/useAuth';
 import { listAdminProfiles, updateAdminProfile } from '../lib/admin';
 import { canManageUsers } from '../lib/rbac';
 import type { AppRole } from '../lib/types';
@@ -30,7 +30,14 @@ export function UsersPage() {
   };
 
   useEffect(() => {
-    void reload();
+    let mounted = true;
+    listAdminProfiles().then((result) => {
+      if (!mounted) return;
+      if (result.error) setError(result.error.message);
+      else setRows(result.data as ProfileRow[]);
+      setLoading(false);
+    });
+    return () => { mounted = false; };
   }, []);
 
   const updateRole = async (id: string, role: AppRole) => {

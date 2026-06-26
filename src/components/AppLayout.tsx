@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Church, History, Image as ImageIcon, LayoutDashboard, Link2, Megaphone, Settings, Users } from 'lucide-react';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../auth/useAuth';
 import { canManageUsers } from '../lib/rbac';
 
 const navItems = [

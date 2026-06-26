@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../auth/useAuth';
 import { archiveContent, getContent, publishContent, saveContent } from '../lib/content';
 import type { ContentItem, Json } from '../lib/types';
 import { EditorActions, Field, ImageField, TextAreaField } from '../components/forms';

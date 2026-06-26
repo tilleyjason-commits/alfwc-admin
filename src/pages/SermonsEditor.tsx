@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Plus } from 'lucide-react';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../auth/useAuth';
 import { archiveContent, listContent, publishContent, saveContent } from '../lib/content';
 import { canPublish } from '../lib/rbac';
 import type { ContentItem, Json } from '../lib/types';
@@ -66,7 +66,11 @@ export function SermonsEditorPage() {
   };
 
   useEffect(() => {
-    void reload();
+    let mounted = true;
+    listContent('sermon').then((result) => {
+      if (mounted && !result.error && result.data) setItems(result.data as ContentItem[]);
+    });
+    return () => { mounted = false; };
   }, []);
 
   const selectItem = (item: ContentItem) => {

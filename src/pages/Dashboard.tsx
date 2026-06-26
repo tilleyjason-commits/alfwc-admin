@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { listAuditEventItems, listContentItems, listRevisionItems } from '../lib/content';
+import type { AuditEvent, ContentRevision } from '../lib/types';
 import { StatusBadge } from './StatusBadge';
 
 export function DashboardPage() {
   const [contentCount, setContentCount] = useState(0);
   const [draftCount, setDraftCount] = useState(0);
-  const [recentRevisions, setRecentRevisions] = useState<any[]>([]);
-  const [recentAudit, setRecentAudit] = useState<any[]>([]);
+  const [recentRevisions, setRecentRevisions] = useState<ContentRevision[]>([]);
+  const [recentAudit, setRecentAudit] = useState<AuditEvent[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

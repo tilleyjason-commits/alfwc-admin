@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUp, Plus, Trash2 } from 'lucide-react';
-import { useAuth } from '../auth/AuthContext';
+import { useAuth } from '../auth/useAuth';
 import { archiveContent, getContent, publishContent, saveContent } from '../lib/content';
 import { canPublish } from '../lib/rbac';
 import type { ContentItem, Json } from '../lib/types';
